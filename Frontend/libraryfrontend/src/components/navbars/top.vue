@@ -13,8 +13,10 @@
 				<v-icon color="white" @click="toggleSettings">mdi-dots-vertical</v-icon>
 			</v-btn>
 		</v-toolbar>
-		<upload v-if="up_visible" />
-		<settings v-if="set_visible" />
+		<upload v-if="overlayUpload" :overlayUpload="overlayUpload"/>
+				<p>{{ overlayUpload }}</p>
+		<settings v-if="overlaySettings" :overlaySettings="overlaySettings"/>
+				<p>{{ overlaySettings }}</p>
 	</div>
 </template>
 
@@ -27,15 +29,15 @@ export default {
 		settings,
 	},
 	data: () => ({
-		up_visible: false,
-		set_visible: false,
+		overlayUpload: false,
+		overlaySettings: false,
 	}),
 	methods: {
 		toggleUpload() {
-			this.up_visible = !this.up_visible;
+			this.overlayUpload = !this.overlayUpload;
 		},
 		toggleSettings() {
-			this.set_visible = !this.set_visible;
+			this.overlaySettings = !this.overlaySettings;
 		},
 	},
 };

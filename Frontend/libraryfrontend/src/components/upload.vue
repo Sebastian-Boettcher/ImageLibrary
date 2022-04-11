@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<v-overlay :z-index="zIndex" :value="overlay" class="background">
+		<v-overlay :z-index="zIndex" :value="overlayUpload" class="background">
 			<v-card class="card">
 				<v-card-title class="justify-center title">Upload your photos</v-card-title>
 				<v-file-input counter multiple show-size truncate-length="21"></v-file-input>
 			</v-card>
 			<br />
-			<v-btn class="black--text" color="cyan lighten-2" @click="overlay = false">
+			<v-btn class="black--text" color="cyan lighten-2" @click="overlayUpload = false">
 				<v-icon dark left> mdi-arrow-left </v-icon>Back</v-btn
 			>
 		</v-overlay>
@@ -15,8 +15,9 @@
 
 <script>
 export default {
+	props: ['overlayUpload'],
 	data: () => ({
-		overlay: true,
+		//overlay: true,
 		zIndex: 2,
 	}),
 };

@@ -31,8 +31,6 @@ export default {
 	data: () => ({
 		overlay: false,
 		zIndex: 0,
-		up_visible: false,
-		set_visible: false
 	}),
 };
 </script>

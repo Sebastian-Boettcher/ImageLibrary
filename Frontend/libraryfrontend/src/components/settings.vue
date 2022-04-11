@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<v-overlay :z-index="zIndex" :value="overlay">
+		<v-overlay :z-index="zIndex" :value="overlaySettings">
 			<v-card class="settings">
 				<h1 class="text-center">That's your settings!</h1>
 			</v-card>
 			<br />
-			<v-btn class="white--text" color="deep-purple darken-3" @click="overlay = false">
+			<v-btn class="black--text" color="cyan lighten-3" @click="overlaySettings = false">
 				<v-icon dark left> mdi-arrow-left </v-icon>Back</v-btn
 			>
 		</v-overlay>
@@ -15,9 +15,10 @@
 
 <script>
 export default {
+	props: ['overlaySettings'],
 	data: () => ({
-		overlay: true,
 		zIndex: 3,
+		opacity: 10,
 	}),
 };
 </script>
