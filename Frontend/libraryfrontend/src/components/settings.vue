@@ -1,31 +1,48 @@
 <template>
-	<div>
-		<v-overlay :z-index="zIndex" :value="overlaySettings">
-			<v-card class="settings">
-				<h1 class="text-center">That's your settings!</h1>
-			</v-card>
-			<br />
-			<v-btn class="black--text" color="cyan lighten-3" @click="overlaySettings = false">
-				<v-icon dark left> mdi-arrow-left </v-icon>Back</v-btn
-			>
-		</v-overlay>
-		
-	</div>
+	<v-card class="mx-auto settings" height="400" width="256">
+		<v-card-title class="card-title">Apps & Settings</v-card-title>
+		<v-navigation-drawer class="deep-purple accent-5" dark permanent>
+			<v-list>
+				<v-list-item v-for="item in items" :key="item.title" link>
+					<v-list-item-icon>
+						<v-icon>{{ item.icon }}</v-icon>
+					</v-list-item-icon>
+
+					<v-list-item-content>
+						<v-list-item-title>{{ item.title }}</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+			</v-list>
+
+			<template v-slot:append>
+				<div class="pa-2">
+					<v-btn block> Logout </v-btn>
+				</div>
+			</template>
+		</v-navigation-drawer>
+	</v-card>
 </template>
 
 <script>
 export default {
-	props: ['overlaySettings'],
-	data: () => ({
-		zIndex: 3,
-		opacity: 10,
-	}),
+	data() {
+		return {
+			items: [
+				{ title: "Weather", icon: "mdi-sun-thermometer" },
+				{ title: "Account", icon: "mdi-account-box" },
+				{ title: "Settings", icon: "mdi-wrench" },
+			],
+		};
+	},
 };
 </script>
 
 <style>
 	.settings{
-		width: 500px;
-		height: 250px;
+		position: fixed;
+		left: 86.5%;
+	}
+	.card-title{
+		text-align: center;
 	}
 </style>

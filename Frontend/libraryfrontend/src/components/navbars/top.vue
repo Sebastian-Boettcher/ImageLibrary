@@ -13,10 +13,15 @@
 				<v-icon color="white" @click="toggleSettings">mdi-dots-vertical</v-icon>
 			</v-btn>
 		</v-toolbar>
-		<upload v-if="overlayUpload" :overlayUpload="overlayUpload"/>
-				<p>{{ overlayUpload }}</p>
-		<settings v-if="overlaySettings" :overlaySettings="overlaySettings"/>
-				<p>{{ overlaySettings }}</p>
+
+		<v-overlay :z-index="zIndex1" :value="Upload" class="background" v-if="Upload">
+			<upload />
+			<v-btn class="black--text" color="cyan lighten-2" @click="Upload = false">
+				<v-icon dark left> mdi-arrow-left </v-icon>Back</v-btn
+			>
+		</v-overlay>
+
+		<settings v-if="Settings" />
 	</div>
 </template>
 
@@ -29,15 +34,17 @@ export default {
 		settings,
 	},
 	data: () => ({
-		overlayUpload: false,
-		overlaySettings: false,
+		Upload: false,
+		Settings: false,
+		zIndex2: 2,
+		zIndex1: 1,
 	}),
 	methods: {
 		toggleUpload() {
-			this.overlayUpload = !this.overlayUpload;
+			this.Upload = !this.Upload;
 		},
 		toggleSettings() {
-			this.overlaySettings = !this.overlaySettings;
+			this.Settings = !this.Settings;
 		},
 	},
 };
