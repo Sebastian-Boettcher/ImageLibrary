@@ -4,6 +4,7 @@
 	</v-app>
 </template>
 
+
 <script>
 import layout from "./components/layout.vue";
 
