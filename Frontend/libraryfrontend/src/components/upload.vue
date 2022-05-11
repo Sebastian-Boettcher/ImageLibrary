@@ -4,9 +4,11 @@
 			<v-card-title class="justify-center title">Upload your photos</v-card-title>
 			<v-text-field label="Image Title" :rules="rules" hide-details="auto"></v-text-field>
 			<v-text-field label="Description"></v-text-field>
-			<v-file-input counter multiple show-size truncate-length="21"></v-file-input>
+			<v-file-input counter multiple  prepend-icon="mdi-camera" :filename="filename"></v-file-input>
+			<p>{{  file_name }}</p>
 		</v-card>
 		<br />
+		
 	</div>
 </template>
 
@@ -23,17 +25,23 @@ export default {
 		rules: [(value) => !!value || "Required.", (value) => (value && value.length <= 140) || "To Many Charakters"],
 	}),
 	methods: {
-		upload() {
-			data = {
-				Title: this.title,
+		async upload() {
+			let data = {
+				title: this.title,
 				Description: this.description,
-				File_name: this.file_name,
+				File_name: this.filename,
 			};
-			axios({
-				method: "post",
-				url: "http://127.0.0.1:8000/",
-			}).then((response) => (data = response.data));
+			let json = JSON.stringify(data);
+			let config = {
+				headers: {
+					"Content-Type": "application/json",
+				},
+			};
+			await axios.post("http://localhost:8000/backend/upload/", json, config).then((response) => {console.log(response)}) 
 		},
+		fileOutput(){
+			print(this.filename)
+		}
 	},
 };
 </script>
