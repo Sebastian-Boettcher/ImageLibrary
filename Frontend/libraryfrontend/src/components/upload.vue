@@ -5,7 +5,6 @@
 			<v-text-field label="Image Title" :rules="rules" hide-details="auto"></v-text-field>
 			<v-text-field label="Description"></v-text-field>
 			<v-file-input counter multiple  prepend-icon="mdi-camera" :filename="filename"></v-file-input>
-			<p>{{  file_name }}</p>
 		</v-card>
 		<br />
 		

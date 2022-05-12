@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
 	name: "Grid",
 	data: () => ({
@@ -28,22 +27,7 @@ export default {
 		zIndex: 2,
 		data: [],
 	}),
-	methods: {
-		async grid() {
-			//let data = {};
-
-			let config = {
-				headers: {
-					"Content-Type": "application/json",
-				},
-			};
-			await axios.get("http://localhost:8000/backend/grid/", json, config).then((response) => {
-				console.log(response.data);
-				this.data = response.data;
-				console.log(this.data)
-			});
-		},
-	},
+	methods: {},
 };
 </script>
 
