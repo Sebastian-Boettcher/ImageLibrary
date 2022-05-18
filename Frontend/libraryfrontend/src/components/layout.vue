@@ -3,7 +3,6 @@
 		<top />
 		<v-row justify="center" class="gallery">
 			<v-btn class="white--text" color="deep-purple darken-3" @click="overlay = !overlay"> Show Images </v-btn>
-			<v-btn @click="grid">Connection-test</v-btn>
 			<v-overlay :z-index="zIndex" :value="overlay">
 				<grid />
 				<br />
@@ -42,8 +41,6 @@ export default {
 			};
 			await axios.get("http://localhost:8000/backend/grid/").then((response) => {
 				console.log(response.data);
-				this.images = response.data;
-				console.log(this.images[0]);
 			});
 		},
 	},

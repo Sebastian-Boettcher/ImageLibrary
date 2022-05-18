@@ -2,45 +2,54 @@
 	<div>
 		<v-card class="card">
 			<v-card-title class="justify-center title">Upload your photos</v-card-title>
-			<v-text-field label="Image Title" :rules="rules" hide-details="auto"></v-text-field>
-			<v-text-field label="Description"></v-text-field>
-			<v-file-input counter multiple  prepend-icon="mdi-camera" :filename="filename"></v-file-input>
+			<v-file-input
+				placeholder="Select Image"
+				counter
+				multiple
+				accept="image/png, image/jpeg"
+				prepend-icon="mdi-camera"
+				v-model="selectedFile"
+			></v-file-input>
+			<v-text-field label="Description" :description="description" hide-details="auto"></v-text-field>
+			<br>
+			<v-btn block elevation="2" color="deep-purple darken-2" @click="uploadFile">Submit</v-btn>
 		</v-card>
 		<br />
-		
 	</div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-	//props: ['overlayUpload'],
 	data: () => ({
 		overlayUpload: true,
 		zIndex: 2,
-		title: "",
 		description: "",
-		file_name: "",
+		selectedFile: null,
+		files: null,
 		rules: [(value) => !!value || "Required.", (value) => (value && value.length <= 140) || "To Many Charakters"],
 	}),
 	methods: {
-		async upload() {
-			let data = {
-				title: this.title,
-				Description: this.description,
-				File_name: this.filename,
-			};
-			let json = JSON.stringify(data);
-			let config = {
-				headers: {
-					"Content-Type": "application/json",
-				},
-			};
-			await axios.post("http://localhost:8000/backend/upload/", json, config).then((response) => {console.log(response)}) 
+		async uploadFile() {
+			const fd = new FormData();
+			if (this.selectedFile == 1) {
+				for (let i = 0; i < this.selectedFile.length; i++) {
+					fd.append("files", this.selectedFile[i]);
+					//fd.append("description", this.description);
+					console.log(fd);
+				}
+			}
+			await axios
+				.post("http://localhost:8000/backend/upload_image/", fd, {
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				})
+				.then((response) => {
+					console.log('Success!')
+					console.log(response);
+				});
 		},
-		fileOutput(){
-			print(this.filename)
-		}
 	},
 };
 </script>
