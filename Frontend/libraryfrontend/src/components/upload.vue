@@ -27,26 +27,25 @@ export default {
 		description: "",
 		selectedFile: null,
 		files: null,
-		rules: [(value) => !!value || "Required.", (value) => (value && value.length <= 140) || "To Many Charakters"],
 	}),
 	methods: {
-		async uploadFile() {
+		uploadFile() {
 			const fd = new FormData();
 			if (this.selectedFile == 1) {
 				for (let i = 0; i < this.selectedFile.length; i++) {
 					fd.append("files", this.selectedFile[i]);
 					//fd.append("description", this.description);
+					this.description = ""
 					console.log(fd);
 				}
 			}
-			await axios
+			axios
 				.post("http://localhost:8000/backend/upload_image/", fd, {
 					headers: {
 						"Content-Type": "multipart/form-data",
 					},
 				})
 				.then((response) => {
-					console.log('Success!')
 					console.log(response);
 				});
 		},
