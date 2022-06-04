@@ -10,8 +10,10 @@
 				prepend-icon="mdi-camera"
 				v-model="selectedFile"
 			></v-file-input>
-			<v-text-field label="Description" :description="description" hide-details="auto"></v-text-field>
-			<br>
+			<v-text-field label="Description" v-model="description" hide-details="auto"></v-text-field>
+			<p>{{ description }}</p>
+			<p>{{ selectedFile }}</p>
+			<br />
 			<v-btn block elevation="2" color="deep-purple darken-2" @click="uploadFile">Submit</v-btn>
 		</v-card>
 		<br />
@@ -31,16 +33,13 @@ export default {
 	methods: {
 		uploadFile() {
 			const fd = new FormData();
-			if (this.selectedFile == 1) {
-				for (let i = 0; i < this.selectedFile.length; i++) {
-					fd.append("files", this.selectedFile[i]);
-					//fd.append("description", this.description);
-					this.description = ""
-					console.log(fd);
-				}
-			}
+
+			let data = {
+				description: this.description,
+				img: this.selectedFile[0],
+			};
 			axios
-				.post("http://localhost:8000/backend/upload_image/", fd, {
+				.post("http://localhost:8000/backend/upload_image/", data, {
 					headers: {
 						"Content-Type": "multipart/form-data",
 					},
