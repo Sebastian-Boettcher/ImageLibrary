@@ -2,16 +2,14 @@
 	<div>
 		<top />
 		<v-row justify="center" class="gallery">
-			<v-btn class="white--text" color="deep-purple darken-3" @click="overlay = !overlay"> Show Images </v-btn>
-			<v-overlay :z-index="zIndex" :value="overlay">
-				<grid />
-				<br />
-				<v-btn class="white--text" color="deep-purple darken-3" @click="overlay = false">
-					<v-icon dark left> mdi-arrow-left </v-icon>Back</v-btn
-				>
-			</v-overlay>
+			<v-card v-if="overlay" class="overlay" transition="fab-transition">
+				<grid v-click-outside="toggle" :testData="data" />
+			</v-card>
+			<v-btn class="white--text button" color="deep-purple darken-3" @click="get" v-if="hide" x-large outlined>
+				Open Library
+			</v-btn>
 		</v-row>
-		<bottom class="bottom" />
+		<bottom class="bottom" v-if="!overlay" />
 	</div>
 </template>
 
@@ -19,6 +17,7 @@
 import Grid from "./Grid.vue";
 import bottom from "./navbars/bottom.vue";
 import top from "./navbars/top.vue";
+
 import axios from "axios";
 
 export default {
@@ -30,18 +29,23 @@ export default {
 	},
 	data: () => ({
 		overlay: false,
-		zIndex: 0,
+		hide: true,
+		opacity: 0,
+		data: "",
 	}),
 	methods: {
-		async grid() {
-			let config = {
-				headers: {
-					"Content-Type": "application/json",
-				},
-			};
+		async get() {
+			this.overlay = !this.overlay;
+			this.hide = !this.hide;
+
 			await axios.get("http://localhost:8000/backend/grid/").then((response) => {
 				console.log(response.data);
+				this.data = response.data;
 			});
+		},
+		toggle() {
+			this.overlay = !this.overlay;
+			this.hide = !this.hide;
 		},
 	},
 };
@@ -49,14 +53,27 @@ export default {
 
 <style>
 .bottom {
+	z-index: 1;
 	margin-top: 43.1%;
 	position: fixed;
 }
 .gallery {
-	margin-top: 18%;
+	position: relative;
+	margin-left: 1.8%;
+	margin-top: 2%;
+	z-index: 1;
 }
 .title {
 	color: white;
 	text-transform: uppercase;
+}
+.overlay {
+	width: 80%;
+	height: 45%;
+	padding: 10px;
+	background-color: transparent;
+}
+.button {
+	margin-top: 15%;
 }
 </style>

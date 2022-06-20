@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="top">
 		<v-toolbar dense elevation="9" color="deep-purple darken-3">
 			<v-btn icon>
 				<v-icon color="white" @click="toggleUpload">mdi-plus</v-icon>
@@ -50,4 +50,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.top{
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+}
+</style>

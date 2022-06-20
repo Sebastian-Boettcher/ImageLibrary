@@ -1,34 +1,32 @@
 <template>
-	<v-row>
-		<v-col v-for="n in 9" :key="n" class="d-flex child-flex test" cols="4">
-			<v-img
-				:src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-				:lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-				aspect-ratio="1"
-				class="grey lighten-2"
-				height="230px"
-				width="115px"
-			>
-				<template v-slot:placeholder>
-					<v-row class="ma-0" align="center" justify="center">
-						<v-progress-circular indeterminate color="deep-purple darken-3"></v-progress-circular>
-					</v-row>
-				</template>
-			</v-img>
+	<v-row class="row">
+		<v-col v-for="(col, index) in testData.data" :key="index" cols="3" class="d-flex child-flex col">
+			<ImageElement
+				:ImgDescription="testData.data[index].Description"
+				:ImgFile="testData.data[index].Img.image"
+			/>
 		</v-col>
 	</v-row>
 </template>
 
 <script>
+import ImageElement from "./ImageElement.vue";
 export default {
 	name: "Grid",
+	props: ["testData"],
+	components: {
+		ImageElement,
+	},
 	data: () => ({
 		overlayUpload: true,
 		zIndex: 2,
-		data: [],
+		index: 0,
 	}),
-	methods: {},
+	mounted() {
+		this.index = this.testData.length;
+	},
 };
 </script>
 
-<style></style>
+<style>
+</style>

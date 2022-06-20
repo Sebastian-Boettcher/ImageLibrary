@@ -1,5 +1,5 @@
 <template>
-	<v-bottom-navigation :value="value" color="blue-grey darken-4" horizontal>
+	<v-bottom-navigation :value="value" color="blue-grey darken-4" horizontal hide-on-scroll scroll-target="#hide-on-scroll-example">
 		<v-btn color="deep-purple lighten-5">
 			<span>Recents</span>
 

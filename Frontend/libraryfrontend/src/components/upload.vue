@@ -11,10 +11,11 @@
 				v-model="selectedFile"
 			></v-file-input>
 			<v-text-field label="Description" v-model="description" hide-details="auto"></v-text-field>
-			<p>{{ description }}</p>
-			<p>{{ selectedFile }}</p>
+			<img src="" alt="" />
 			<br />
-			<v-btn block elevation="2" color="deep-purple darken-2" @click="uploadFile">Submit</v-btn>
+			<v-btn block elevation="2" color="deep-purple darken-2" @click="uploadFile"
+				>Upload <v-icon right dark> mdi-cloud-upload </v-icon></v-btn
+			>
 		</v-card>
 		<br />
 	</div>
@@ -28,12 +29,12 @@ export default {
 		zIndex: 2,
 		description: "",
 		selectedFile: null,
+		title: "",
+		src: "",
 		files: null,
 	}),
 	methods: {
 		uploadFile() {
-			const fd = new FormData();
-
 			let data = {
 				description: this.description,
 				img: this.selectedFile[0],
