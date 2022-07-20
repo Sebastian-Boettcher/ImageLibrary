@@ -1,40 +1,40 @@
 <template>
-	<div>
+	<div class="background">
 		<top />
-		<v-row justify="center" class="gallery">
-			<v-card v-if="overlay" class="overlay" transition="fab-transition">
-				<grid v-click-outside="toggle" :testData="data" />
-			</v-card>
-			<v-btn class="white--text button" color="deep-purple darken-3" @click="get" v-if="hide" x-large outlined>
-				Open Library
-			</v-btn>
-		</v-row>
-		<bottom class="bottom" v-if="!overlay" />
+
+		<SideBar class="fix"/>
+
+		<grid :testData="data" class="grid ml-11 pa-2 mb-1" />
+
+		<bottom class="bottom pa-1" />
 	</div>
 </template>
 
 <script>
-import Grid from "./Grid.vue";
+import Grid from "./functions/ImageGrid/Grid.vue";
 import bottom from "./navbars/bottom.vue";
 import top from "./navbars/top.vue";
+import SideBar from "./navbars/SideBar.vue";
 
 import axios from "axios";
 
 export default {
 	components: {
 		Grid,
+		SideBar,
 		bottom,
 		top,
 		images: {},
 	},
 	data: () => ({
-		overlay: false,
 		hide: true,
 		opacity: 0,
 		data: "",
+		closeOnContentClick: false,
+		items: [{ title: "Click Me" }, { title: "Click Me" }, { title: "Click Me" }, { title: "Click Me 2" }],
 	}),
 	methods: {
-		async get() {
+		async getData() {
 			this.overlay = !this.overlay;
 			this.hide = !this.hide;
 
@@ -48,32 +48,37 @@ export default {
 			this.hide = !this.hide;
 		},
 	},
+	mounted() {
+		this.getData();
+	},
 };
 </script>
 
 <style>
 .bottom {
-	z-index: 1;
-	margin-top: 43.1%;
+	z-index: 0;
 	position: fixed;
-}
-.gallery {
-	position: relative;
-	margin-left: 1.8%;
-	margin-top: 2%;
-	z-index: 1;
+	width: 100%;
+	height: auto;
 }
 .title {
 	color: white;
 	text-transform: uppercase;
 }
-.overlay {
-	width: 80%;
-	height: 45%;
-	padding: 10px;
-	background-color: transparent;
+.sideMenu {
+	width: 2.9%;
 }
-.button {
-	margin-top: 15%;
+:hover .sideMenu {
+	width: 10%;
+}
+.fix{
+	position: fixed;
+	z-index: 1;
+}
+.background{
+	background-color:#EEEEEE ;
+}
+.grid{
+	z-index: 0;
 }
 </style>

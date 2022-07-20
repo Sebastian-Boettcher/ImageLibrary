@@ -1,6 +1,6 @@
 <template>
 	<div class="top">
-		<v-toolbar dense elevation="9" color="deep-purple darken-3">
+		<v-toolbar dense elevation="9" color="deep-purple accent-4">
 			<v-btn icon>
 				<v-icon color="white" @click="toggleUpload">mdi-plus</v-icon>
 			</v-btn>
@@ -9,8 +9,8 @@
 
 			<v-spacer></v-spacer>
 
-			<v-btn icon>
-				<v-icon color="white" @click="toggleSettings">mdi-dots-vertical</v-icon>
+			<v-btn icon @click="toggleSettings">
+				<v-icon color="white" >mdi-dots-vertical</v-icon>
 			</v-btn>
 		</v-toolbar>
 
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import upload from "../upload.vue";
-import settings from "../settings.vue";
+import upload from "../functions/upload.vue";
+import settings from "../functions/settings.vue";
 export default {
 	components: {
 		upload,
@@ -36,7 +36,7 @@ export default {
 	data: () => ({
 		Upload: false,
 		Settings: false,
-		zIndex2: 2,
+		zIndex2: 1,
 		zIndex1: 1,
 	}),
 	methods: {
@@ -54,6 +54,5 @@ export default {
 .top{
 	position: fixed;
 	width: 100%;
-	z-index: 2;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<v-card class="mx-auto settings" height="400" width="256">
 		<v-card-title class="card-title">Apps & Settings</v-card-title>
-		<v-navigation-drawer class="deep-purple accent-5" dark permanent>
+		<v-navigation-drawer class="deep-purple accent-4" dark permanent>
 			<v-list>
 				<v-list-item v-for="item in items" :key="item.title" link>
 					<v-list-item-icon>
@@ -28,7 +28,7 @@ export default {
 	data() {
 		return {
 			items: [
-				{ title: "Weather", icon: "mdi-sun-thermometer" },
+				{ title: "Messenger", icon: "mdi-message-text" },
 				{ title: "Account", icon: "mdi-account-box" },
 				{ title: "Settings", icon: "mdi-wrench" },
 			],

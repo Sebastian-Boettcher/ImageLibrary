@@ -11,7 +11,6 @@
 				v-model="selectedFile"
 			></v-file-input>
 			<v-text-field label="Description" v-model="description" hide-details="auto"></v-text-field>
-			<img src="" alt="" />
 			<br />
 			<v-btn block elevation="2" color="deep-purple darken-2" @click="uploadFile"
 				>Upload <v-icon right dark> mdi-cloud-upload </v-icon></v-btn
@@ -35,10 +34,14 @@ export default {
 	}),
 	methods: {
 		uploadFile() {
+			console.log(this.selectedFile[0].name)
 			let data = {
 				description: this.description,
 				img: this.selectedFile[0],
 			};
+			this.description = '';
+			this.selectedFile = null;
+
 			axios
 				.post("http://localhost:8000/backend/upload_image/", data, {
 					headers: {

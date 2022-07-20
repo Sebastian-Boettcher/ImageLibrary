@@ -1,7 +1,8 @@
 <template>
 	<v-row class="row">
-		<v-col v-for="(col, index) in testData.data" :key="index" cols="3" class="d-flex child-flex col">
+		<v-col v-for="(col, index) in testData.data" :key="index" cols="2" class="d-flex child-flex" >
 			<ImageElement
+				class="flex-grow-0 flex-shrink-2"
 				:ImgDescription="testData.data[index].Description"
 				:ImgFile="testData.data[index].Img.image"
 			/>
@@ -28,5 +29,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
