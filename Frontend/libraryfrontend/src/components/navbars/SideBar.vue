@@ -21,21 +21,21 @@
 			<v-list nav dense>
 				<v-list-item link>
 					<v-list-item-icon>
-						<v-icon color="lime lighten-4">mdi-folder</v-icon>
+						<v-icon color="lime lighten-4">mdi-account-box</v-icon>
 					</v-list-item-icon>
-					<v-list-item-title class="white--text">My Files</v-list-item-title>
+					<v-list-item-title class="white--text">Profil</v-list-item-title>
 				</v-list-item>
 				<v-list-item link>
 					<v-list-item-icon>
-						<v-icon color="lime lighten-4">mdi-account-multiple</v-icon>
+						<v-icon color="lime lighten-4">mdi-chat-processing-outline</v-icon>
 					</v-list-item-icon>
-					<v-list-item-title class="white--text">Shared with me</v-list-item-title>
+					<v-list-item-title class="white--text">Nachrichten</v-list-item-title>
 				</v-list-item>
 				<v-list-item link>
 					<v-list-item-icon>
-						<v-icon color="lime lighten-4">mdi-star</v-icon>
+						<v-icon color="lime lighten-4">mdi-star-outline</v-icon>
 					</v-list-item-icon>
-					<v-list-item-title class="white--text">Starred</v-list-item-title>
+					<v-list-item-title class="white--text">Favoriten</v-list-item-title>
 				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>

@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<v-card class="card">
-			<v-card-title class="justify-center title">Upload your photos</v-card-title>
+		<v-card class="card" elevation="0">
 			<v-file-input
 				placeholder="Select Image"
 				counter

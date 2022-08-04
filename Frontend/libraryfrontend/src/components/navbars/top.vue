@@ -10,16 +10,23 @@
 			<v-spacer></v-spacer>
 
 			<v-btn icon @click="toggleSettings">
-				<v-icon color="white" >mdi-dots-vertical</v-icon>
+				<v-icon color="white">mdi-dots-vertical</v-icon>
 			</v-btn>
 		</v-toolbar>
 
-		<v-overlay :z-index="zIndex1" :value="Upload" class="background" v-if="Upload">
+		<!--<v-overlay :z-index="zIndex1" :value="Upload" class="background" v-if="Upload">
 			<upload />
 			<v-btn class="black--text" color="cyan lighten-2" @click="Upload = false">
 				<v-icon dark left> mdi-arrow-left </v-icon>Back</v-btn
 			>
-		</v-overlay>
+		</v-overlay>-->
+
+		<v-bottom-sheet :value="Upload" class="overlay" v-model="Upload">
+			<v-sheet class="text-center">
+				<h1 class="mt-12">Hey</h1>
+				<upload class="testing" />
+			</v-sheet>
+		</v-bottom-sheet>
 
 		<settings v-if="Settings" />
 	</div>
@@ -51,8 +58,13 @@ export default {
 </script>
 
 <style>
-.top{
+.top {
 	position: fixed;
 	width: 100%;
 }
+.overlay {
+	background-color: transparent;
+	width: 100%;
+}
+
 </style>
