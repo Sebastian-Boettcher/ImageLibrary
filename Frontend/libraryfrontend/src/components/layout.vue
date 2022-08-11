@@ -2,7 +2,7 @@
 	<div class="background">
 		<top />
 
-		<SideBar class="fix"/>
+		<SideBar class="fix" />
 
 		<grid :testData="data" class="grid ml-11 pa-2 mb-1" />
 
@@ -71,14 +71,14 @@ export default {
 :hover .sideMenu {
 	width: 10%;
 }
-.fix{
+.fix {
 	position: fixed;
 	z-index: 1;
 }
-.background{
-	background-color:#EEEEEE ;
+.background {
+	background-color: #eeeeee;
 }
-.grid{
+.grid {
 	z-index: 0;
 }
 </style>

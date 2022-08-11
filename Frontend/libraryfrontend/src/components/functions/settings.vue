@@ -1,6 +1,6 @@
 <template>
 	<v-card class="mx-auto settings" height="400" width="256">
-		<v-card-title class="card-title">Apps & Settings</v-card-title>
+		<v-card-title class="card-title">Apps and Settings</v-card-title>
 		<v-navigation-drawer class="deep-purple accent-4" dark permanent>
 			<v-list>
 				<v-list-item v-for="item in items" :key="item.title" link>
