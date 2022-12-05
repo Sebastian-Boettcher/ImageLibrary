@@ -1,13 +1,27 @@
 <template>
 	<v-card elevation="2" class="content">
-		<v-img class="img" alt="Doesnt Worked!" :src="img" :aspect-ratio="4/3"></v-img>
+		<v-img class="img" alt="Doesnt Worked!" :src="img" :aspect-ratio="16 / 9"></v-img>
 		<br />
 		<v-divider></v-divider>
+		<h3>Your UserName</h3>
 		<v-card-text align="center" class="description">
 			{{ ImgDescription }}
 		</v-card-text>
+		<v-btn-toggle v-model="toggle_exclusive" class="btn_lidime">
+			<v-btn>
+				<v-icon>mdi-thumb-up-outline</v-icon>
+			</v-btn>
+			<v-btn>
+				<v-icon>mdi-message-bulleted</v-icon>
+			</v-btn>
+			<v-btn>
+				<v-icon>mdi-star-plus-outline</v-icon>
+			</v-btn>
+			<v-btn>
+				<v-icon>mdi-thumb-down-outline</v-icon>
+			</v-btn>
+		</v-btn-toggle>
 		<br />
-		<v-divider></v-divider>
 	</v-card>
 </template>
 
@@ -18,6 +32,7 @@ export default {
 	data: () => ({
 		source: "http://127.0.0.1:8000/backend",
 		img: "",
+		toggle_exclusive: undefined,
 	}),
 	methods: {},
 	mounted() {
@@ -35,6 +50,9 @@ export default {
 .img {
 	margin-left: auto;
 	margin-right: auto;
-	width: 50%;
+	width: 100%;
+}
+.btn_lidime {
+	margin-left: 13%;
 }
 </style>
