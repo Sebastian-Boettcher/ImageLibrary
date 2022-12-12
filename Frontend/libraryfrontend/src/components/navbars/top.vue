@@ -1,47 +1,73 @@
 <template>
-	<div class="top">
-		<v-toolbar dense elevation="9" color="deep-purple accent-4">
-			<v-toolbar-title class="ml-16 title">Image Booth</v-toolbar-title>
+	<v-app id="inspire">
+		<v-navigation-drawer v-model="drawer" absolute bottom temporary>
+			<!--  -->
+		</v-navigation-drawer>
+
+		<v-app-bar app color="deep-purple accent-3">
+			<v-app-bar-nav-icon @click="drawer = !drawer" color="white"></v-app-bar-nav-icon>
+
+			<v-toolbar-title color="grey lighten-5"><img src="./Logotext.png" alt="ImageBooth" /></v-toolbar-title>
+			<!--TODOImage Design Update-->
 
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click="toggleUpload">
-				<v-icon color="white">mdi-dots-vertical</v-icon>
-			</v-btn>
-		</v-toolbar>
+			<v-menu top origin="center center" transition="scale-transition">
+				<template v-slot:activator="{ on, attrs }">
+					<v-btn icon v-bind="attrs" v-on="on">
+						<v-icon color="white">mdi-dots-vertical</v-icon>
+					</v-btn>
+				</template>
+				<!--TODO Routing to Uploadsite -->
+				<v-list color="deep-purple lighten-5">
+					<v-list-item v-for="(item, i) in items" :key="i">
+						<v-btn color="deep-purple accent-4" block class="white--text"
+							><v-icon>{{ item.icon }}</v-icon
+							>{{ item.title }}</v-btn
+						>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</v-app-bar>
 
-		<v-bottom-sheet :value="Upload" class="overlay" v-model="Upload" inset>
-			<!--<v-sheet class="text-center">
-				<h1 class="mt-12">Hey</h1>
-				
-			</v-sheet>-->
-			<upload class="testing " />
-		</v-bottom-sheet>
-	</div>
+		<v-main>
+			<v-container>
+				<v-row>
+					<v-col v-for="(col, index) in data.data" :key="index" cols="2" class="d-flex child-flex">
+						<ImageElement
+							class="flex-grow-0 flex-shrink-2"
+							:ImgDescription="data.data[index].Description"
+							:ImgFile="data.data[index].Img.image"
+						/>
+					</v-col>
+				</v-row>
+			</v-container>
+		</v-main>
+	</v-app>
 </template>
 
 <script>
 import upload from "../functions/upload.vue";
 import settings from "../functions/settings.vue";
+import ImageElement from "../functions/ImageGrid/ImageElement.vue";
+
 export default {
 	components: {
 		upload,
 		settings,
+		ImageElement,
 	},
+	props: ["data"],
 	data: () => ({
 		Upload: false,
 		Settings: false,
-		zIndex2: 1,
-		zIndex1: 1,
+		drawer: false,
+		items: [
+			{ title: "Bild hochladen", icon: "mdi-file-upload-outline" },
+			{ title: "Abmelden", icon: "mdi-logout" },
+		],
 	}),
-	methods: {
-		toggleUpload() {
-			this.Upload = !this.Upload;
-		},
-		toggleSettings() {
-			this.Settings = !this.Settings;
-		},
-	},
+	methods: {},
 };
 </script>
 
@@ -54,5 +80,4 @@ export default {
 	background-color: transparent;
 	width: 100%;
 }
-
 </style>

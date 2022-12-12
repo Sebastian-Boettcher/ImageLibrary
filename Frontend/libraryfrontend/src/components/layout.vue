@@ -1,10 +1,6 @@
 <template>
 	<div class="background">
-		<top />
-
-		<SideBar class="fix" />
-
-		<grid :testData="data" class="grid ml-11 pa-2 mb-1" />
+		<top :data="data"/>
 
 		<bottom class="bottom pa-1" />
 	</div>
